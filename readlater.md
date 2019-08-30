@@ -1,0 +1,6 @@
+- [Python で AtCoder 青になるまで -Python で競プロやるときに気をつけること-](https://qiita.com/Kentaro_okumura/items/a6917572756a2e3c0da9)
+  - 終盤の計算量などの話を読む
+- [AtCoder 版！蟻本 (初級編)](https://qiita.com/drken/items/e77685614f3c6bf86f44)
+  - 初級は C 問題くらいが多め
+  - チートシート作成後に解く
+- D 埋め
