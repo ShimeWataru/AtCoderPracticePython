@@ -572,6 +572,7 @@ print(int(2.9))
 - 文字列の参照は`文字列[参照番号]`となる
 - 文字列の比較は、整数と同様に行える
 - 文字列の逆順は`文字列[::-1]`となる
+- 文字列の長さは`len(str)`
 
 ### a 文字列の結合
 
@@ -597,16 +598,19 @@ print(a+b)
 FizzBuzz
 ```
 
-### b 文字列の参照
+### b 文字列の参照（抽出）
 
 文字列の参照は`文字列[参照番号]`となる。
+参照番号に負の整数を指定すると、後ろからのインデックスになる
 
 ```
 String="abc"
 print(String[0],String[1],String[2])
+print(String[-3],String[-2],String[-1])
 ```
 
 ```
+a b c
 a b c
 ```
 
@@ -656,6 +660,77 @@ print(b)
 [1, 2, 3, 1, 2, 3, 1, 2, 3]
 ```
 
+### f 文字列のスライス
+
+文字列は`[start:end:step]`で一部を取り出すことができる
+
+- `[:]`は先頭から末尾までのシーケンス全体を抽出する
+- `[start:]`は`start`から末尾までのシーケンスを抽出する
+- `[:end]`は先頭から`end-1`オフセットまでのシーケンスを抽出する
+- `[start:end]`は`start`から`end-`までのシーケンスを抽出する
+- `[start:end:step]`は`step`文字ごとに`start`から`end`までのシーケンスを抽出する
+
+```
+letters = 'abcdefghijklmnopqrstuvwxyz'
+letters[20:] == 'uvwxyz'
+letters[10:] == 'klmnopqrstuvwxyz'
+
+オフセット12から14を取り出す場合
+letters[12:15] == 'klmnopqrstuvwxyz'
+
+最後の3文字を取り出す
+letters[-3:] == 'xyz'
+
+末尾の6文字手前から3文字手前まで
+letters[-6:-2] == 'uvwx'
+
+先頭から末尾まで7文字ごとに抽出する
+letters[::7] == 'ahov'
+
+逆順にする
+letters[::-1]
+```
+
+### g 文字列の分割
+
+```
+a = 'ab c d e fgh ij'
+a.split() == [ab,c,d,e,fgh,ij]
+```
+
+### h 大文字小文字の変換
+
+```
+setup = 'a duck goed into a bar'
+
+先頭の単語をタイトルケースにする
+setup.capitalize()
+    'A duck goes into a bar'
+
+すべての単語をタイトルケースにする
+setup.title()
+    'A Duck Goes Into A Bar'
+
+すべての文字を大文字にする
+setup.upper()
+    'A DUCK GOES INTO A BAR"
+
+すべての文字を小文字にする
+setup.lower()
+    'a duck goes into a bar'
+
+すべての大文字小文字を逆にする
+setup.swapcase()
+    'A DUCK GOES INTO A BAR'
+```
+
+### i 文字列の置換
+
+```
+setup.replace('duck', 'marmoset')
+duckがmarmosetに入れ替わる
+```
+
 ## 08 リスト（list）
 
 <b>キーポイント</b>
@@ -677,23 +752,40 @@ print(b)
 要素の追加は`append`メソッドを使用する。`リスト名.append(データ)`でリストの最後に追加される。
 
 ```
+
 List=["a","b","c"]
 List.append('d')
 print(List)
+
 ```
 
 ```
+
 ['a', 'b', 'c', 'd']
+
 ```
 
 ```
+
 List=[0,1,2]
 List.append(3)
 print(List)
+
 ```
 
 ```
+
 [0, 1, 2, 3]
+
+```
+
+要素の挿入`insert`を用いてオフセットを指定して要素を追加できる
+
+```
+List = [0,1,2]
+List.insert(1,10)
+print(List)
+[0,10,1,2]
 ```
 
 ### b 要素の探索
@@ -701,21 +793,29 @@ print(List)
 要素の探索は`index`メソッドを使用する。`リスト名.index(データ)`でリストの先頭から探索され、一番初めに見つかったインデックスを返却する。
 
 ```
+
 List=["a","b","c","d","e","f"]
 print(List.index('c'))
+
 ```
 
 ```
+
 2
+
 ```
 
 ```
+
 List=["a","b","c","d","c","c"]
 print(List.index('c'))
+
 ```
 
 ```
+
 2
+
 ```
 
 ### c 要素の削除
@@ -723,25 +823,42 @@ print(List.index('c'))
 要素の削除は`pop`メソッドを使用する。`リスト名.pop(要素番号)`で要素番号の要素が削除される。要素番号を指定しない`リスト名.pop()`と、リストの最後の要素が削除される。
 
 ```
+
 List=["a","b","c","d","e","f"]
 print(List.pop(1))
 print(List)
+
 ```
 
 ```
+
 b
 ['a', 'c', 'd', 'e', 'f']
+
 ```
 
 ```
+
 List=[1,2,3,4,5]
 print(List.pop())
 print(List)
+
 ```
 
 ```
+
 5
 [1, 2, 3, 4]
+
+```
+
+`remove`による要素の削除
+
+```
+List = ['ABC', 'DEF', 'GHI']
+List.remove('DEF')
+print(List)
+['ABC','GHI']
 ```
 
 ### d 要素の出現回数
@@ -749,21 +866,29 @@ print(List)
 要素の出現回数は`count`メソッドを使用する。`リスト名.count(データ)`で出現回数が返却される。
 
 ```
+
 List=["a","b","b","c","c","c"]
 print(List.count('c'))
+
 ```
 
 ```
+
 3
+
 ```
 
 ```
+
 List=["a","b","b","c","c","c"]
 print(List.count('d'))
+
 ```
 
 ```
+
 0
+
 ```
 
 ### e 要素のユニーク化 重複削除
@@ -771,12 +896,16 @@ print(List.count('d'))
 要素のユニーク化はリスト`list`型から集合`set`型に変換することによって要素をユニークにできる。ただし、要素の順序性は保たれない。
 
 ```
+
 List=[1,2,3,2,1,3]
 print(list(set(List)))
+
 ```
 
 ```
+
 [1, 2, 3]
+
 ```
 
 ### f スライス
@@ -784,39 +913,63 @@ print(list(set(List)))
 Python ではリストの一部を切り出せるスライスという機能がある。スライスは`リスト名[最初のインデックス:最後のインデックス:ステップ数]`となる。
 
 ```
+
 List=["a","b","c","d","e"]
 print(List[1:3])
+
 ```
 
 ```
+
 ['b', 'c']
+
 ```
 
 ```
+
 List=["a","b","c","d","e"]
 print(List[1:4:2])
+
 ```
 
 ```
+
 ['b', 'd']
+
 ```
 
 ```
+
 List=["a","b","c","d","e"]
 print(List[:3])
+
 ```
 
 ```
+
 ['a', 'b', 'c']
+
 ```
 
 ```
+
 List=["a","b","c","d","e"]
 print(List[3:])
+
 ```
 
 ```
+
 ['d', 'e']
+
+```
+
+### g 要素の結合
+
+```
+a = ['a','b','c','d']
+','.join(a) = 'a,b,c,d'
+
 ```
 
 # 基本処理
@@ -835,12 +988,16 @@ print(List[3:])
 文字列の長さを得る場合、`len(変数名)`となる。
 
 ```
+
 String="aiueo"
 print(len(String))
+
 ```
 
 ```
+
 5
+
 ```
 
 ### b リスト
@@ -848,12 +1005,16 @@ print(len(String))
 リストの長さを得る場合、`len(リスト名)`となる。
 
 ```
+
 List=["a","b","c","a"]
 print(len(List))
+
 ```
 
 ```
+
 4
+
 ```
 
 ## 02 ソート
@@ -867,12 +1028,16 @@ print(len(List))
 ソートをする場合、`sorted`関数を使用する。ソートは昇順で行われる。
 
 ```
+
 List=[2,1,3]
 print(sorted(List))
+
 ```
 
 ```
+
 [1, 2, 3]
+
 ```
 
 ### b 降順
@@ -880,33 +1045,42 @@ print(sorted(List))
 ソートを降順にする場合、`sorted(データ)[::-1]`となる。
 
 ```
+
 List=[2,1,3]
 print(sorted(List)[::-1])
+
 ```
 
 ```
+
 [3, 2, 1]
+
 ```
 
 ### c アルファベットの大文字小文字を区別せずソート
 
 ```
+
 a = ['e', 'B', 'd', 'C', 'a']
 print(sorted(a))
 print(sorted(a, key=lambda x: x.upper()))
+
 ```
 
 ```
-['B', 'C', 'a', 'd', 'e']
-['a', 'B', 'C', 'd', 'e']
+
+['B', 'C', 'a', 'd', 'e']['a', 'b', 'c', 'd', 'e']
+
 ```
 
 ### d 二個目の要素でソート
 
 ```
+
 w=[[1, 2], [2, 6] , [3, 6], [4, 5], [5, 7]]
 w.sort()
-w.sort(key=lambda x:x[1],reverse=True)  #二個目の要素で降順並び替え
+w.sort(key=lambda x:x[1],reverse=True) #二個目の要素で降順並び替え
+
 ```
 
 ### e 多重キーでのソート
@@ -914,14 +1088,18 @@ w.sort(key=lambda x:x[1],reverse=True)  #二個目の要素で降順並び替え
 内部のタプルの 1 要素目（アルファベット），2 要素目（数字），0 要素目（数値）の順に比較してソート
 
 ```
+
 a = [(1, 'One', '1'), (1, 'One', '01'),
-     (2, 'Two', '2'), (2, 'Two', '02'),
-     (3, 'Three', '3'), (3, 'Three', '03')]
+(2, 'Two', '2'), (2, 'Two', '02'),
+(3, 'Three', '3'), (3, 'Three', '03')]
 print(sorted(a, key=lambda x: (x[1], x[2], x[0])))
+
 ```
 
 ```
+
 [(1, 'One', '01'), (1, 'One', '1'), (3, 'Three', '03'), (3, 'Three', '3'), (2, 'Two', '02'), (2, 'Two', '2')]
+
 ```
 
 ## 03 最大値 / 最小値
@@ -940,11 +1118,15 @@ print(sorted(a, key=lambda x: (x[1], x[2], x[0])))
 整数の場合、`max(整数A,整数B)`となる。
 
 ```
+
 print(max(2,3))
+
 ```
 
 ```
+
 3
+
 ```
 
 - 変数
@@ -952,14 +1134,18 @@ print(max(2,3))
 変数の場合、`max(変数名A,変数名B,変数名C)`となる。
 
 ```
+
 a=1
 b=2
 c=3
 print(max(a,b,c))
+
 ```
 
 ```
+
 3
+
 ```
 
 - リスト
@@ -967,12 +1153,16 @@ print(max(a,b,c))
 リストの場合、`max(リスト名)`となる。
 
 ```
+
 List=[2,4,6,8]
 print(max(List))
+
 ```
 
 ```
+
 8
+
 ```
 
 ### b 最小値
@@ -984,11 +1174,15 @@ print(max(List))
 整数の場合、`min(整数A,整数B)`となる。
 
 ```
+
 print(min(2,3))
+
 ```
 
 ```
+
 2
+
 ```
 
 - 変数
@@ -996,14 +1190,18 @@ print(min(2,3))
 変数の場合、`min(変数名A,変数名B,変数名C)`となる。
 
 ```
+
 a=3
 b=4
 c=5
 print(min(a,b,c))
+
 ```
 
 ```
+
 3
+
 ```
 
 - リスト
@@ -1011,12 +1209,16 @@ print(min(a,b,c))
 リストの場合、`min(リスト名)`となる。
 
 ```
+
 List=[2,4,6,8]
 print(min(List))
+
 ```
 
 ```
+
 2
+
 ```
 
 ## 04 合計値
@@ -1027,12 +1229,16 @@ print(min(List))
 - 合計値を得る場合、`sum(データ)`となる
 
 ```
+
 List=[1,2,3]
 print(sum(List))
+
 ```
 
 ```
+
 6
+
 ```
 
 ### a 数字和
@@ -1040,12 +1246,16 @@ print(sum(List))
 `map`関数を使用して、`sum(map(int,整数の文字列データ))`で数字和を求めることができる。
 
 ```
+
 x="1234"
 print(sum(map(int,x)))
+
 ```
 
 ```
+
 10(=1+2+3+4)
+
 ```
 
 ## 05 集合
@@ -1053,16 +1263,19 @@ print(sum(map(int,x)))
 ### a 和集合・積集合
 
 ```
+
 a = [2, 4, 6, 8]
 b = [3, 6, 9]
 
-print(list(set(a) | set(b)))  # 和集合
-print(list(set(a) & set(b)))  # 積集合
+print(list(set(a) | set(b))) # 和集合
+print(list(set(a) & set(b))) # 積集合
+
 ```
 
 ```
-[2, 3, 4, 6, 8, 9]
-[6]
+
+[2, 3, 4, 6, 8, 9][6]
+
 ```
 
 ## 06 絶対値
@@ -1073,11 +1286,15 @@ print(list(set(a) & set(b)))  # 積集合
 - 絶対値を得る場合、`abs(数値データ)`となる
 
 ```
+
 print(abs(-1))
+
 ```
 
 ```
+
 1
+
 ```
 
 ## 07 置換
@@ -1088,12 +1305,16 @@ print(abs(-1))
 - 置換をする場合、`文字列.replace("置換前文字列","置換後文字列")`となる
 
 ```
+
 String="abcde"
 print(String.replace("bc","xy"))
+
 ```
 
 ```
+
 axyde
+
 ```
 
 ## 08 大文字小文字変換
@@ -1110,12 +1331,16 @@ axyde
 文字列を大文字に変換するのは`upper`メソッドを使用する。`文字列.upper()`となる。
 
 ```
+
 Text="this is a pen."
 print(Text.upper())
+
 ```
 
 ```
+
 THIS IS A PEN.
+
 ```
 
 ### b 小文字変換
@@ -1123,27 +1348,34 @@ THIS IS A PEN.
 文字列を小文字に変換するのは`lower`メソッドを使用する。`文字列.lower()`となる。
 
 ```
+
 Text="THIS IS A PEN."
 print(Text.lower())
+
 ```
 
 ```
+
 this is a pen.
+
 ```
 
 ## 09 最大公約数・最小公倍数
 
 ```
+
 import fractions
 a,b=map(int, input().split())
 f=fractions.gcd(a,b)
-f2=a*b//f
+f2=a\*b//f
 print(f,f2)
+
 ```
 
 ## 10 n 進数
 
 ```
+
 n=64
 k=-3
 bi=''
@@ -1152,11 +1384,13 @@ bi+=str(n%abs(k))
 if k<0:n=-(-n//k)
 else:n=n//k
 print(bi[::-1])
+
 ```
 
 ## 11 ゼロ埋め・幅寄せ
 
 ```
+
 print("python".ljust(15,'-')) # 左詰め
 #python---------
 print("python".center(15,'-'))# 中央寄せ
@@ -1164,8 +1398,9 @@ print("python".center(15,'-'))# 中央寄せ
 print("python".rjust(15,'-')) # 右詰め
 #---------python
 
-print(str(29).rjust(10,'0')) #10桁ゼロ埋め
+print(str(29).rjust(10,'0')) #10 桁ゼロ埋め
 #0000000029
+
 ```
 
 # その他
@@ -1189,11 +1424,14 @@ print(str(29).rjust(10,'0')) #10桁ゼロ埋め
 a,b=1,2
 a,b=b,a
 print(a,b)
+
 ```
 
 ````
+
 2 1
 **```**
+
 ````
 
 ## 02 文字列定数
@@ -1212,4 +1450,8 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ
 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 0123456789
 0123456789abcdefABCDEF
+```
+
+```
+
 ```
