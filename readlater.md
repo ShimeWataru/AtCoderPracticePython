@@ -1,5 +1,6 @@
 - [Python で AtCoder 青になるまで -Python で競プロやるときに気をつけること-](https://qiita.com/Kentaro_okumura/items/a6917572756a2e3c0da9)
   - 終盤の計算量などの話を読む
+- [計算量オーダーの求め方を総整理！ 〜 どこから log が出て来るか 〜](https://qiita.com/drken/items/872ebc3a2b5caaa4a0d0)
 - [AtCoder 版！蟻本 (初級編)](https://qiita.com/drken/items/e77685614f3c6bf86f44)
   - 初級は C 問題くらいが多め
   - チートシート作成後に解く
