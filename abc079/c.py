@@ -1,6 +1,3 @@
-
-import heapq
-import math
 import sys
 from io import StringIO
 import unittest
@@ -9,14 +6,17 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n, m = map(int, input().split())
-    a = list(map(lambda x: int(x) * (-1), input().split()))
-    heapq.heapify(a)
-
-    for _ in range(m):
-        tmp_min = heapq.heappop(a)
-        heapq.heappush(a, (-1)*(-tmp_min//2))
-    print(-sum(a))
+    a, b, c, d = input()
+    kigou = ["+", "-"]
+    for i in range(8):
+        bin_str = str(format(i, 'b').rjust(10, '0'))
+        soeji_01 = int(bin_str[-1])
+        soeji_02 = int(bin_str[-2])
+        soeji_03 = int(bin_str[-3])
+        shiki = "" + a + kigou[soeji_01] + b + \
+            kigou[soeji_02] + c + kigou[soeji_03] + d
+        if eval(shiki) == 7:
+            print(shiki+"=7")
 
 
 class TestClass(unittest.TestCase):
@@ -31,30 +31,20 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """3 3
-2 13 8"""
-        output = """9"""
+        input = """1222"""
+        output = """1+2+2+2=7"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """4 4
-1 9 3 5"""
-        output = """6"""
+        input = """0290"""
+        output = """0-2+9+0=7"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """1 100000
-1000000000"""
-        output = """0"""
-        self.assertIO(input, output)
-
-    def test_input_4(self):
-        print("test_input_4")
-        input = """10 1
-1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000"""
-        output = """9500000000"""
+        input = """3242"""
+        output = """3+2+4-2=7"""
         self.assertIO(input, output)
 
 

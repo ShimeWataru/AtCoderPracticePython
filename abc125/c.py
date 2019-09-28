@@ -1,6 +1,5 @@
-
-import heapq
-import math
+import copy
+import fractions
 import sys
 from io import StringIO
 import unittest
@@ -9,14 +8,22 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n, m = map(int, input().split())
-    a = list(map(lambda x: int(x) * (-1), input().split()))
-    heapq.heapify(a)
-
-    for _ in range(m):
-        tmp_min = heapq.heappop(a)
-        heapq.heappush(a, (-1)*(-tmp_min//2))
-    print(-sum(a))
+    n = int(input())
+    l = list(map(int, input().split()))
+    sum = 0
+    if len(l) == 2:
+        print(max(l[0], l[1]))
+        exit()
+    else:
+        for i in range(n):
+            ll = copy.deepcopy(l)
+            ll.pop(i)
+            ans = ll[0]
+            for j in range(1, len(ll)):
+                ans = fractions.gcd(ans, ll[j])
+                if sum < ans:
+                    sum = ans
+    print(sum)
 
 
 class TestClass(unittest.TestCase):
@@ -31,30 +38,23 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """3 3
-2 13 8"""
-        output = """9"""
+        input = """3
+7 6 8"""
+        output = """2"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """4 4
-1 9 3 5"""
+        input = """3
+12 15 18"""
         output = """6"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """1 100000
-1000000000"""
-        output = """0"""
-        self.assertIO(input, output)
-
-    def test_input_4(self):
-        print("test_input_4")
-        input = """10 1
-1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000"""
-        output = """9500000000"""
+        input = """2
+1000000000 1000000000"""
+        output = """1000000000"""
         self.assertIO(input, output)
 
 

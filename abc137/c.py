@@ -1,6 +1,3 @@
-
-import heapq
-import math
 import sys
 from io import StringIO
 import unittest
@@ -9,14 +6,21 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n, m = map(int, input().split())
-    a = list(map(lambda x: int(x) * (-1), input().split()))
-    heapq.heapify(a)
+    N = int(input())
+    dic = {}
+    for i in range(N):
+        s = list(input())
+        s.sort()
+        key = str(s)
+        if key in dic:
+            dic[key] += 1
+        else:
+            dic[key] = 1
 
-    for _ in range(m):
-        tmp_min = heapq.heappop(a)
-        heapq.heappush(a, (-1)*(-tmp_min//2))
-    print(-sum(a))
+    ans = 0
+    for value in dic.values():
+        ans += value*(value-1) / 2
+    print(int(ans))
 
 
 class TestClass(unittest.TestCase):
@@ -31,30 +35,30 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """3 3
-2 13 8"""
-        output = """9"""
+        input = """3
+acornistnt
+peanutbomb
+constraint"""
+        output = """1"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """4 4
-1 9 3 5"""
-        output = """6"""
+        input = """2
+oneplustwo
+ninemodsix"""
+        output = """0"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """1 100000
-1000000000"""
-        output = """0"""
-        self.assertIO(input, output)
-
-    def test_input_4(self):
-        print("test_input_4")
-        input = """10 1
-1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000"""
-        output = """9500000000"""
+        input = """5
+abaaaaaaaa
+oneplustwo
+aaaaaaaaba
+twoplusone
+aaaabaaaaa"""
+        output = """4"""
         self.assertIO(input, output)
 
 

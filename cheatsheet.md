@@ -1384,6 +1384,13 @@ print(f,f2)
 ## 10 n 進数
 
 ```
+i = 255
+bin_str = format(i, 'b')# 11111111
+oct_str = format(i, 'o')# 377
+hex_str = format(i, 'x')# ff
+```
+
+```
 
 n=64
 k=-3

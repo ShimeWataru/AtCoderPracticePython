@@ -1,6 +1,3 @@
-
-import heapq
-import math
 import sys
 from io import StringIO
 import unittest
@@ -10,13 +7,19 @@ logging.basicConfig(level=logging.DEBUG)
 
 def resolve():
     n, m = map(int, input().split())
-    a = list(map(lambda x: int(x) * (-1), input().split()))
-    heapq.heapify(a)
-
-    for _ in range(m):
-        tmp_min = heapq.heappop(a)
-        heapq.heappush(a, (-1)*(-tmp_min//2))
-    print(-sum(a))
+    l = [list(map(int, input().split())) for _ in range(m)]
+    kaidan = [-1] * (n + 1)
+    for i in range(len(l)):
+        kaidan[l[i][0]] = 0
+    for i in range(1, len(kaidan) + 1):
+        if not (kaidan[-i] == 0):
+            if i == 1:
+                kaidan[-1] = 1
+            elif i == 2:
+                kaidan[-2] = kaidan[-1]
+            else:
+                kaidan[-i] = kaidan[-i + 1] + kaidan[-i + 2]
+    print(kaidan[0] % 1000000007)
 
 
 class TestClass(unittest.TestCase):
@@ -31,30 +34,28 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """3 3
-2 13 8"""
-        output = """9"""
+        input = """6 1
+3"""
+        output = """4"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """4 4
-1 9 3 5"""
-        output = """6"""
+        input = """10 2
+4
+5"""
+        output = """0"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """1 100000
-1000000000"""
-        output = """0"""
-        self.assertIO(input, output)
-
-    def test_input_4(self):
-        print("test_input_4")
-        input = """10 1
-1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000 1000000000"""
-        output = """9500000000"""
+        input = """100 5
+1
+23
+45
+67
+89"""
+        output = """608200469"""
         self.assertIO(input, output)
 
 
