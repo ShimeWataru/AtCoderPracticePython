@@ -11,3 +11,4 @@ Collections counter
 Itertools accumulate
 素数判定
 素因数
+bisect
