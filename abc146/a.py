@@ -6,7 +6,21 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    print(int(input())**2)
+    s = input()
+    if s == "SUN":
+        print(7)
+    elif s == "MON":
+        print(6)
+    elif s == "TUE":
+        print(5)
+    elif s == "WED":
+        print(4)
+    elif s == "THU":
+        print(3)
+    elif s == "FRI":
+        print(2)
+    elif s == "SAT":
+        print(1)
 
 
 class TestClass(unittest.TestCase):
@@ -21,14 +35,14 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """2"""
-        output = """4"""
+        input = """SAT"""
+        output = """1"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """100"""
-        output = """10000"""
+        input = """SUN"""
+        output = """7"""
         self.assertIO(input, output)
 
 

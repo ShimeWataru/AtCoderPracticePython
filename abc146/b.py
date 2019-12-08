@@ -8,19 +8,13 @@ logging.basicConfig(level=logging.DEBUG)
 def resolve():
     n = int(input())
     s = input()
-    check = True
-
-    if len(s) % 2 == 0:
-        for i in range(n//2):
-            if s[i] != s[n // 2 + i]:
-                check = False
-    else:
-        check = False
-
-    if check:
-        print("Yes")
-    else:
-        print("No")
+    l = ""
+    for i in range(len(s)):
+        if (int(ord(s[i])) + n) >= 91:
+            l += chr((int(ord(s[i])) + n) - 26)
+        else:
+            l += chr(int(ord(s[i])) + n)
+    print(l)
 
 
 class TestClass(unittest.TestCase):
@@ -35,23 +29,23 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """6
-abcabc"""
-        output = """Yes"""
+        input = """2
+ABCXYZ"""
+        output = """CDEZAB"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """6
-abcadc"""
-        output = """No"""
+        input = """0
+ABCXYZ"""
+        output = """ABCXYZ"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """1
-z"""
-        output = """No"""
+        input = """13
+ABCDEFGHIJKLMNOPQRSTUVWXYZ"""
+        output = """NOPQRSTUVWXYZABCDEFGHIJKLM"""
         self.assertIO(input, output)
 
 
