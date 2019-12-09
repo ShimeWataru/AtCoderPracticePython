@@ -15,8 +15,8 @@ def resolve():
         l.append([list(map(int, input().split())) for _ in range(m)])
     for i in range(2 ** n):
         bin_i = format(i, 'b').rjust(n, "0")
+        check = True
         for k in range(n):
-            check = True
             for x in range(len(l[k])):
                 if bin_i[k] == "1":
                     if (bin_i[l[k][x][0] - 1] == "1") and (l[k][x][1] == 0):
@@ -25,7 +25,6 @@ def resolve():
                         check = False
         if check:
             ans = max(ans, bin_i.count("1"))
-            print(bin_i)
     print(ans)
 
 
