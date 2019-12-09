@@ -1374,10 +1374,12 @@ this is a pen.
 ```
 import fractions
 a,b=map(int, input().split())
-f=fractions.gcd(a,b)
-f2=a\*b//f
+f=fractions.gcd(a,b) 公約数
+f2=a*b//f 公倍数
 print(f,f2)
 ```
+
+a,b,c の最大公約数は(a,b の公約数)と c の公約数に等しい
 
 ## 10 n 進数
 
