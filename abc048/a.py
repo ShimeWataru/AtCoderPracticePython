@@ -6,11 +6,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n = int(input())
-    ans = 0
-    for i in range(1, n + 1):
-        if len(str(i)) % 2 == 1:
-            ans += 1
+    a, b, c = input().split()
+    ans = a[0] + b[0] + c[0]
     print(ans)
 
 
@@ -26,20 +23,20 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """11"""
-        output = """9"""
+        input = """AtCoder Beginner Contest"""
+        output = """ABC"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """136"""
-        output = """46"""
+        input = """AtCoder Snuke Contest"""
+        output = """ASC"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """100000"""
-        output = """90909"""
+        input = """AtCoder X Contest"""
+        output = """AXC"""
         self.assertIO(input, output)
 
 

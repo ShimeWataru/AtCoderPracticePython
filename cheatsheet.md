@@ -58,7 +58,6 @@ ab
 ```
 Lists=[1,2,3,4,5]
 print(List)
-
 ```
 
 ```
@@ -70,7 +69,6 @@ print(List)
 ```
 Lists=[1,2,3,4,5]
 print(*List)
-
 ```
 
 ```
@@ -173,11 +171,9 @@ print(a,b,c,d)
 ```
 
 ```
-
 a,b=map(int,input().split())
 print(a)
 print(b)
-
 ```
 
 ```
@@ -211,10 +207,8 @@ world!
 ```
 
 ```
-
 List=list(map(int,input().split()))
 print(List)
-
 ```
 
 ```
@@ -1413,7 +1407,7 @@ this is a pen.
 ```
 import fractions
 a,b=map(int, input().split())
-f=fractions.gcd(a,b) 公約数
+f=fractions.gcd(a,b) 最大公約数
 f2=a*b//f 公倍数
 print(f,f2)
 ```
