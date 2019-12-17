@@ -5,3 +5,6 @@
 
 * テスト実行コマンド
   `python3 -m unittest abc001.a`
+
+* ファイル生成コマンド
+  `python3 mkdir.py abc999`
