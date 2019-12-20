@@ -4,8 +4,22 @@ import unittest
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
+
 def resolve():
-    pass
+    n = int(input())
+    ans = 0
+    for j in range(n + 1):
+        ass = []
+        for i in range(1, int(j**0.5)+1):
+            if j % i == 0:
+                ass.append(i)
+                if i**2 == j:
+                    continue
+                ass.append(j//i)
+        if j % 2 == 1 and len(ass) == 8:
+            ans += 1
+    print(ans)
+
 
 class TestClass(unittest.TestCase):
     def assertIO(self, input, output):
@@ -16,21 +30,19 @@ class TestClass(unittest.TestCase):
         out = sys.stdout.read()[:-1]
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
+
     def test_input_1(self):
         print("test_input_1")
-        input = """0 0 0 1"""
-        output = """-1 1 -1 0"""
+        input = """105"""
+        output = """1"""
         self.assertIO(input, output)
+
     def test_input_2(self):
         print("test_input_2")
-        input = """2 3 6 6"""
-        output = """3 10 -1 7"""
+        input = """7"""
+        output = """0"""
         self.assertIO(input, output)
-    def test_input_3(self):
-        print("test_input_3")
-        input = """31 -41 -59 26"""
-        output = """-126 -64 -36 -131"""
-        self.assertIO(input, output)
+
 
 if __name__ == "__main__":
     unittest.main()
