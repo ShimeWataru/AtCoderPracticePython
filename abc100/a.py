@@ -6,13 +6,11 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n = int(input())
-    l = list(map(int, input().split()))
-    sum = 0
-    for i in range(n - 1):
-        for j in range(i + 1, n):
-            sum += (l[i] ^ l[j])
-    print(sum)
+    a, b = map(int, input().split())
+    if a <= 8 and b <= 8:
+        print("Yay!")
+    else:
+        print(":(")
 
 
 class TestClass(unittest.TestCase):
@@ -27,23 +25,20 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """3
-1 2 3"""
-        output = """6"""
+        input = """5 4"""
+        output = """Yay!"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """10
-3 1 4 1 5 9 2 6 5 3"""
-        output = """237"""
+        input = """8 8"""
+        output = """Yay!"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """10
-3 14 159 2653 58979 323846 2643383 27950288 419716939 9375105820"""
-        output = """103715602"""
+        input = """11 4"""
+        output = """:("""
         self.assertIO(input, output)
 
 
