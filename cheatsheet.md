@@ -1521,6 +1521,20 @@ def segment_sieve(a,b):
     return ass
 ```
 
+## 13 階乗・順列・組み合わせ
+
+```
+# i の階乗
+import math
+math.factorial(i)
+
+# 4P2
+math.factorial(4) // math.factorial(4 - 2)
+
+# 10C3
+math.factorial(10) // math.factorial(10 - 3) // math.factorial(3)
+```
+
 # その他
 
 ## 01 代入演算
