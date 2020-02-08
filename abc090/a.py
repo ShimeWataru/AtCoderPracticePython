@@ -6,10 +6,10 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    a, b, c, d = map(int, input().split())
-    x = c - a
-    y = d - b
-    print(c-y, d+x, a-y, b+x)
+    a = input()
+    b = input()
+    c = input()
+    print(a[0]+b[1]+c[2])
 
 
 class TestClass(unittest.TestCase):
@@ -24,20 +24,18 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """0 0 0 1"""
-        output = """-1 1 -1 0"""
+        input = """ant
+obe
+rec"""
+        output = """abc"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """2 3 6 6"""
-        output = """3 10 -1 7"""
-        self.assertIO(input, output)
-
-    def test_input_3(self):
-        print("test_input_3")
-        input = """31 -41 -59 26"""
-        output = """-126 -64 -36 -131"""
+        input = """edu
+cat
+ion"""
+        output = """ean"""
         self.assertIO(input, output)
 
 

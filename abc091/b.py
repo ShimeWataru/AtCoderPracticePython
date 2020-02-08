@@ -6,10 +6,14 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    a, b, c, d = map(int, input().split())
-    x = c - a
-    y = d - b
-    print(c-y, d+x, a-y, b+x)
+    n = int(input())
+    l_n = [input() for i in range(n)]
+    m = int(input())
+    l_m = [input() for i in range(m)]
+    max_c = 0
+    for i in range(n):
+        max_c = max(max_c, l_n.count(l_n[i]) - l_m.count(l_n[i]))
+    print(max_c)
 
 
 class TestClass(unittest.TestCase):
@@ -24,20 +28,64 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """0 0 0 1"""
-        output = """-1 1 -1 0"""
+        input = """3
+apple
+orange
+apple
+1
+grape"""
+        output = """2"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """2 3 6 6"""
-        output = """3 10 -1 7"""
+        input = """3
+apple
+orange
+apple
+5
+apple
+apple
+apple
+apple
+apple"""
+        output = """1"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """31 -41 -59 26"""
-        output = """-126 -64 -36 -131"""
+        input = """1
+voldemort
+10
+voldemort
+voldemort
+voldemort
+voldemort
+voldemort
+voldemort
+voldemort
+voldemort
+voldemort
+voldemort"""
+        output = """0"""
+        self.assertIO(input, output)
+
+    def test_input_4(self):
+        print("test_input_4")
+        input = """6
+red
+red
+blue
+yellow
+yellow
+red
+5
+red
+red
+yellow
+green
+blue"""
+        output = """1"""
         self.assertIO(input, output)
 
 
