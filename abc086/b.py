@@ -6,19 +6,13 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    a, b, c = map(int, input().split())
-    max_a = 0
-    max_b = 0
-    if a == b:
-        max_a += 1
-    if a == c:
-        max_a += 1
-    if b == c:
-        max_b += 1
-    if max(max_a, max_b) == 1:
-        print("Yes")
-    else:
-        print("No")
+    a, b = input().split()
+    n = int(a + b)
+    for i in range(1, n // 2):
+        if n / i == i:
+            print("Yes")
+            exit()
+    print("No")
 
 
 class TestClass(unittest.TestCase):
@@ -33,26 +27,20 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """5 7 5"""
+        input = """1 21"""
         output = """Yes"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """4 4 4"""
+        input = """100 100"""
         output = """No"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """4 9 6"""
+        input = """12 10"""
         output = """No"""
-        self.assertIO(input, output)
-
-    def test_input_4(self):
-        print("test_input_4")
-        input = """3 3 4"""
-        output = """Yes"""
         self.assertIO(input, output)
 
 
