@@ -6,21 +6,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n = int(input())
     l = list(map(int, input().split()))
-    check = True
-    for i in range(n):
-        if l[i] % 2 == 1:
-            next
-        else:
-            if l[i] % 3 == 0 or l[i] % 5 == 0:
-                next
-            else:
-                check = False
-    if check:
-        print("APPROVED")
-    else:
-        print("DENIED")
+    l = sorted(l)
+    print(l[0] + l[1])
 
 
 class TestClass(unittest.TestCase):
@@ -35,16 +23,14 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """5
-6 7 9 10 31"""
-        output = """APPROVED"""
+        input = """700 600 780"""
+        output = """1300"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """3
-28 27 24"""
-        output = """DENIED"""
+        input = """10000 10000 10000"""
+        output = """20000"""
         self.assertIO(input, output)
 
 

@@ -6,21 +6,12 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n = int(input())
-    l = list(map(int, input().split()))
-    check = True
-    for i in range(n):
-        if l[i] % 2 == 1:
-            next
-        else:
-            if l[i] % 3 == 0 or l[i] % 5 == 0:
-                next
-            else:
-                check = False
-    if check:
-        print("APPROVED")
-    else:
-        print("DENIED")
+    s = input()
+    ans = ""
+    for i in range(len(s)):
+        if i % 2 == 0:
+            ans += s[i]
+    print(ans)
 
 
 class TestClass(unittest.TestCase):
@@ -35,16 +26,26 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """5
-6 7 9 10 31"""
-        output = """APPROVED"""
+        input = """atcoder"""
+        output = """acdr"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """3
-28 27 24"""
-        output = """DENIED"""
+        input = """aaaa"""
+        output = """aa"""
+        self.assertIO(input, output)
+
+    def test_input_3(self):
+        print("test_input_3")
+        input = """z"""
+        output = """z"""
+        self.assertIO(input, output)
+
+    def test_input_4(self):
+        print("test_input_4")
+        input = """fukuokayamaguchi"""
+        output = """fkoaaauh"""
         self.assertIO(input, output)
 
 
