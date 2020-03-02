@@ -6,24 +6,11 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n = int(input())
-    l = [int(input()) for i in range(n)]
-    x = 0
-    check = [True] * n
-    ans = 0
-    flg = False
-    while (check[x]):
-        if x == 1:
-            flg = True
-            break
-        else:
-            ans += 1
-            check[x] = False
-            x = l[x] - 1
-    if flg:
-        print(ans)
+    a, b, c = input().split()
+    if a[-1] == b[0] and b[-1] == c[0]:
+        print("YES")
     else:
-        print(-1)
+        print("NO")
 
 
 class TestClass(unittest.TestCase):
@@ -38,32 +25,26 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """3
-3
-1
-2"""
-        output = """2"""
+        input = """rng gorilla apple"""
+        output = """YES"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """4
-3
-4
-1
-2"""
-        output = """-1"""
+        input = """yakiniku unagi sushi"""
+        output = """NO"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """5
-3
-3
-4
-2
-4"""
-        output = """3"""
+        input = """a a a"""
+        output = """YES"""
+        self.assertIO(input, output)
+
+    def test_input_4(self):
+        print("test_input_4")
+        input = """aaaaaaaaab aaaaaaaaaa aaaaaaaaab"""
+        output = """NO"""
         self.assertIO(input, output)
 
 

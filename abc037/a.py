@@ -6,24 +6,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n = int(input())
-    l = [int(input()) for i in range(n)]
-    x = 0
-    check = [True] * n
-    ans = 0
-    flg = False
-    while (check[x]):
-        if x == 1:
-            flg = True
-            break
-        else:
-            ans += 1
-            check[x] = False
-            x = l[x] - 1
-    if flg:
-        print(ans)
-    else:
-        print(-1)
+    a, b, n = map(int, input().split())
+    m = min(a, b)
+    print(n//m)
 
 
 class TestClass(unittest.TestCase):
@@ -38,31 +23,13 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """3
-3
-1
-2"""
+        input = """3 5 6"""
         output = """2"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """4
-3
-4
-1
-2"""
-        output = """-1"""
-        self.assertIO(input, output)
-
-    def test_input_3(self):
-        print("test_input_3")
-        input = """5
-3
-3
-4
-2
-4"""
+        input = """8 6 20"""
         output = """3"""
         self.assertIO(input, output)
 

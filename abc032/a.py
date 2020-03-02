@@ -1,3 +1,4 @@
+import fractions
 import sys
 from io import StringIO
 import unittest
@@ -6,24 +7,13 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
+    a = int(input())
+    b = int(input())
     n = int(input())
-    l = [int(input()) for i in range(n)]
-    x = 0
-    check = [True] * n
-    ans = 0
-    flg = False
-    while (check[x]):
-        if x == 1:
-            flg = True
+    for i in range(n, 20001):
+        if i % a == 0 and i % b == 0:
+            print(i)
             break
-        else:
-            ans += 1
-            check[x] = False
-            x = l[x] - 1
-    if flg:
-        print(ans)
-    else:
-        print(-1)
 
 
 class TestClass(unittest.TestCase):
@@ -36,34 +26,28 @@ class TestClass(unittest.TestCase):
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
 
-    def test_input_1(self):
-        print("test_input_1")
-        input = """3
+    def test_input1(self):
+        print("test_input1")
+        input = """2
 3
-1
+8"""
+        output = """12"""
+        self.assertIO(input, output)
+
+    def test_input2(self):
+        print("test_input2")
+        input = """2
+2
 2"""
         output = """2"""
         self.assertIO(input, output)
 
-    def test_input_2(self):
-        print("test_input_2")
-        input = """4
-3
-4
-1
-2"""
-        output = """-1"""
-        self.assertIO(input, output)
-
-    def test_input_3(self):
-        print("test_input_3")
-        input = """5
-3
-3
-4
-2
-4"""
-        output = """3"""
+    def test_input3(self):
+        print("test_input3")
+        input = """12
+8
+25"""
+        output = """48"""
         self.assertIO(input, output)
 
 

@@ -6,24 +6,16 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
+    ans = {}
     n = int(input())
-    l = [int(input()) for i in range(n)]
-    x = 0
-    check = [True] * n
-    ans = 0
-    flg = False
-    while (check[x]):
-        if x == 1:
-            flg = True
-            break
+    l = [input() for i in range(n)]
+    for i in range(n):
+        if l[i] in ans:
+            ans[l[i]] = ans[l[i]] + 1
         else:
-            ans += 1
-            check[x] = False
-            x = l[x] - 1
-    if flg:
-        print(ans)
-    else:
-        print(-1)
+            ans[l[i]] = 1
+    ans = sorted(ans.items(), key=lambda x: x[1], reverse=True)
+    print(ans[0][0])
 
 
 class TestClass(unittest.TestCase):
@@ -36,34 +28,36 @@ class TestClass(unittest.TestCase):
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
 
-    def test_input_1(self):
-        print("test_input_1")
-        input = """3
-3
-1
-2"""
-        output = """2"""
-        self.assertIO(input, output)
-
-    def test_input_2(self):
-        print("test_input_2")
+    def test_input1(self):
+        print("test_input1")
         input = """4
-3
-4
-1
-2"""
-        output = """-1"""
+taro
+jiro
+taro
+saburo"""
+        output = """taro"""
         self.assertIO(input, output)
 
-    def test_input_3(self):
-        print("test_input_3")
-        input = """5
-3
-3
-4
-2
-4"""
-        output = """3"""
+    def test_input2(self):
+        print("test_input2")
+        input = """1
+takahashikun"""
+        output = """takahashikun"""
+        self.assertIO(input, output)
+
+    def test_input3(self):
+        print("test_input3")
+        input = """9
+a
+b
+c
+c
+b
+c
+b
+d
+e"""
+        output = """b"""
         self.assertIO(input, output)
 
 

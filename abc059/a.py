@@ -6,24 +6,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n = int(input())
-    l = [int(input()) for i in range(n)]
-    x = 0
-    check = [True] * n
-    ans = 0
-    flg = False
-    while (check[x]):
-        if x == 1:
-            flg = True
-            break
-        else:
-            ans += 1
-            check[x] = False
-            x = l[x] - 1
-    if flg:
-        print(ans)
-    else:
-        print(-1)
+    a, b, c = input().split()
+    print(a[0].upper() + b[0].upper() + c[0].upper())
 
 
 class TestClass(unittest.TestCase):
@@ -38,32 +22,26 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """3
-3
-1
-2"""
-        output = """2"""
+        input = """atcoder beginner contest"""
+        output = """ABC"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """4
-3
-4
-1
-2"""
-        output = """-1"""
+        input = """resident register number"""
+        output = """RRN"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """5
-3
-3
-4
-2
-4"""
-        output = """3"""
+        input = """k nearest neighbor"""
+        output = """KNN"""
+        self.assertIO(input, output)
+
+    def test_input_4(self):
+        print("test_input_4")
+        input = """async layered coding"""
+        output = """ALC"""
         self.assertIO(input, output)
 
 
