@@ -6,8 +6,17 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    a, b = map(int, input().split())
-    print(b-a + 1)
+    l, h = map(int, input().split())
+    n = int(input())
+    m = [int(input()) for i in range(n)]
+
+    for i in range(n):
+        if l <= m[i] <= h:
+            print(0)
+        elif l > m[i]:
+            print(l - m[i])
+        else:
+            print(-1)
 
 
 class TestClass(unittest.TestCase):
@@ -22,14 +31,30 @@ class TestClass(unittest.TestCase):
 
     def test_input1(self):
         print("test_input1")
-        input = """4 7"""
-        output = """4"""
+        input = """300 400
+3
+240
+350
+480"""
+        output = """60
+0
+-1"""
         self.assertIO(input, output)
 
     def test_input2(self):
         print("test_input2")
-        input = """1 1"""
-        output = """1"""
+        input = """50 80
+5
+10000
+50
+81
+80
+0"""
+        output = """-1
+0
+-1
+0
+50"""
         self.assertIO(input, output)
 
 

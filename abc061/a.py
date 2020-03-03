@@ -6,8 +6,11 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    a, b = map(int, input().split())
-    print(b-a + 1)
+    a, b, c = map(int, input().split())
+    if a <= c <= b:
+        print("Yes")
+    else:
+        print("No")
 
 
 class TestClass(unittest.TestCase):
@@ -20,16 +23,22 @@ class TestClass(unittest.TestCase):
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
 
-    def test_input1(self):
-        print("test_input1")
-        input = """4 7"""
-        output = """4"""
+    def test_input_1(self):
+        print("test_input_1")
+        input = """1 3 2"""
+        output = """Yes"""
         self.assertIO(input, output)
 
-    def test_input2(self):
-        print("test_input2")
-        input = """1 1"""
-        output = """1"""
+    def test_input_2(self):
+        print("test_input_2")
+        input = """6 5 4"""
+        output = """No"""
+        self.assertIO(input, output)
+
+    def test_input_3(self):
+        print("test_input_3")
+        input = """2 2 2"""
+        output = """Yes"""
         self.assertIO(input, output)
 
 

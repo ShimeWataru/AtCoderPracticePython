@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 def resolve():
     a, b = map(int, input().split())
-    print(b-a + 1)
+    print((a+b) % 24)
 
 
 class TestClass(unittest.TestCase):
@@ -20,15 +20,21 @@ class TestClass(unittest.TestCase):
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
 
-    def test_input1(self):
-        print("test_input1")
-        input = """4 7"""
-        output = """4"""
+    def test_input_1(self):
+        print("test_input_1")
+        input = """9 12"""
+        output = """21"""
         self.assertIO(input, output)
 
-    def test_input2(self):
-        print("test_input2")
-        input = """1 1"""
+    def test_input_2(self):
+        print("test_input_2")
+        input = """19 0"""
+        output = """19"""
+        self.assertIO(input, output)
+
+    def test_input_3(self):
+        print("test_input_3")
+        input = """23 2"""
         output = """1"""
         self.assertIO(input, output)
 

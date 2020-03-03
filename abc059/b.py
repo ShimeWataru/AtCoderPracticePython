@@ -8,8 +8,12 @@ logging.basicConfig(level=logging.DEBUG)
 def resolve():
     a = int(input())
     b = int(input())
-    s = abs(a - b)
-    print(min(s, 10-s))
+    if a > b:
+        print("GREATER")
+    elif a < b:
+        print("LESS")
+    else:
+        print("EQUAL")
 
 
 class TestClass(unittest.TestCase):
@@ -22,25 +26,32 @@ class TestClass(unittest.TestCase):
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
 
-    def test_input1(self):
-        print("test_input1")
-        input = """4
-6"""
-        output = """2"""
+    def test_input_1(self):
+        print("test_input_1")
+        input = """36
+24"""
+        output = """GREATER"""
         self.assertIO(input, output)
 
-    def test_input2(self):
-        print("test_input2")
-        input = """6
-4"""
-        output = """2"""
+    def test_input_2(self):
+        print("test_input_2")
+        input = """850
+3777"""
+        output = """LESS"""
         self.assertIO(input, output)
 
-    def test_input3(self):
-        print("test_input3")
-        input = """8
-1"""
-        output = """3"""
+    def test_input_3(self):
+        print("test_input_3")
+        input = """9720246
+22516266"""
+        output = """LESS"""
+        self.assertIO(input, output)
+
+    def test_input_4(self):
+        print("test_input_4")
+        input = """123456789012345678901234567890
+234567890123456789012345678901"""
+        output = """LESS"""
         self.assertIO(input, output)
 
 

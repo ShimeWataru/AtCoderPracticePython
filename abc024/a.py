@@ -6,8 +6,13 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    a, b = map(int, input().split())
-    print(b-a + 1)
+    a, b, c, k = map(int, input().split())
+    s, t = map(int, input().split())
+    ans = a * s + b * t
+    if s + t >= k:
+        print(ans - (s + t) * c)
+    else:
+        print(ans)
 
 
 class TestClass(unittest.TestCase):
@@ -22,14 +27,23 @@ class TestClass(unittest.TestCase):
 
     def test_input1(self):
         print("test_input1")
-        input = """4 7"""
-        output = """4"""
+        input = """100 200 50 20
+40 10"""
+        output = """3500"""
         self.assertIO(input, output)
 
     def test_input2(self):
         print("test_input2")
-        input = """1 1"""
-        output = """1"""
+        input = """400 1000 400 21
+10 10"""
+        output = """14000"""
+        self.assertIO(input, output)
+
+    def test_input3(self):
+        print("test_input3")
+        input = """400 1000 400 20
+10 10"""
+        output = """6000"""
         self.assertIO(input, output)
 
 

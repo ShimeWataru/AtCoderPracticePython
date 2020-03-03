@@ -6,8 +6,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    a, b = map(int, input().split())
-    print(b-a + 1)
+    a, b = input().split()
+    print(int(a+b)*2)
 
 
 class TestClass(unittest.TestCase):
@@ -22,14 +22,14 @@ class TestClass(unittest.TestCase):
 
     def test_input1(self):
         print("test_input1")
-        input = """4 7"""
-        output = """4"""
+        input = """1 23"""
+        output = """246"""
         self.assertIO(input, output)
 
     def test_input2(self):
         print("test_input2")
-        input = """1 1"""
-        output = """1"""
+        input = """999 999"""
+        output = """1999998"""
         self.assertIO(input, output)
 
 
