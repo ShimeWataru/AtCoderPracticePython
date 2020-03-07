@@ -6,16 +6,28 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n = int(input())
-    l = list(map(int, input().split()))
-    m = int(input())
-    j = list(map(int, input().split()))
-    s = l + j
-    o = set(s)
-    if len(s) == len(o):
-        print("YES")
+    n, a, b = map(int, input().split())
+    l = [list(input().split()) for i in range(n)]
+    ans = 0
+    for i in range(n):
+        d = 0
+        if int(l[i][1]) < a:
+            d = a
+        elif int(l[i][1]) > b:
+            d = b
+        else:
+            d = int(l[i][1])
+        if l[i][0] == "West":
+            ans -= d
+        else:
+            ans += d
+
+    if ans > 0:
+        print("East", ans)
+    elif ans < 0:
+        print("West", abs(ans))
     else:
-        print("NO")
+        print(ans)
 
 
 class TestClass(unittest.TestCase):
@@ -30,47 +42,31 @@ class TestClass(unittest.TestCase):
 
     def test_input1(self):
         print("test_input1")
-        input = """5
-1 5
-3
-3 4 2"""
-        output = """YES"""
+        input = """3 5 10
+East 7
+West 3
+West 11"""
+        output = """West 8"""
         self.assertIO(input, output)
 
     def test_input2(self):
         print("test_input2")
-        input = """7
-1 3
-4
-2 4 2 7"""
-        output = """NO"""
+        input = """3 3 8
+West 6
+East 3
+East 1"""
+        output = """0"""
         self.assertIO(input, output)
 
     def test_input3(self):
         print("test_input3")
-        input = """4
-1 4
-3
-2 1 3"""
-        output = """NO"""
-        self.assertIO(input, output)
-
-    def test_input4(self):
-        print("test_input4")
-        input = """4
-1 4
-3
-2 4 3"""
-        output = """NO"""
-        self.assertIO(input, output)
-
-    def test_input5(self):
-        print("test_input5")
-        input = """20
-1 4
-12
-2 3 5 7 8 9 10 11 12 15 13 14"""
-        output = """YES"""
+        input = """5 25 25
+East 1
+East 1
+West 1
+East 100
+West 1"""
+        output = """East 25"""
         self.assertIO(input, output)
 
 

@@ -6,9 +6,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    s = input()
-    m = input()
-    print(s if len(s) > len(m) else m)
+    n = input()
+    print("vowel" if n in "aiueo" else "consonant")
 
 
 class TestClass(unittest.TestCase):
@@ -21,18 +20,22 @@ class TestClass(unittest.TestCase):
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
 
-    def test_input1(self):
-        print("test_input1")
-        input = """isuruu
-isleapyear"""
-        output = """isleapyear"""
+    def test_input_1(self):
+        print("test_input_1")
+        input = """a"""
+        output = """vowel"""
         self.assertIO(input, output)
 
-    def test_input2(self):
-        print("test_input2")
-        input = """ttttiiiimmmmeeee
-time"""
-        output = """ttttiiiimmmmeeee"""
+    def test_input_2(self):
+        print("test_input_2")
+        input = """z"""
+        output = """consonant"""
+        self.assertIO(input, output)
+
+    def test_input_3(self):
+        print("test_input_3")
+        input = """s"""
+        output = """consonant"""
         self.assertIO(input, output)
 
 

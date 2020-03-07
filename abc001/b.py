@@ -6,17 +6,20 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    n, q = map(int, input().split())
-    l = [list(map(int, input().split())) for i in range(q)]
-    ans = [0] * n
-    for i in range(q):
-        s = l[i][0] - 1
-        e = l[i][1]
-        a = l[i][2]
-        for j in range(s, e):
-            ans[j] = a
-    for i in range(n):
-        print(ans[i])
+    m = int(input()) / 1000
+    if m < 0.1:
+        print("00")
+    elif m <= 5:
+        print(str(int((m * 10)//1)).rjust(2, '0'))
+    elif m <= 30:
+        print(int((m + 50)//1))
+    elif m <= 70:
+        m -= 30
+        m /= 5
+        m += 80
+        print(int(m // 1))
+    else:
+        print(89)
 
 
 class TestClass(unittest.TestCase):
@@ -31,33 +34,20 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """5 2
-1 3 10
-2 4 20"""
-        output = """10
-20
-20
-20
-0"""
+        input = """15000"""
+        output = """65"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """10 4
-2 7 22
-3 5 4
-6 10 1
-4 4 12"""
-        output = """0
-22
-4
-12
-4
-1
-1
-1
-1
-1"""
+        input = """75000"""
+        output = """89"""
+        self.assertIO(input, output)
+
+    def test_input_3(self):
+        print("test_input_3")
+        input = """200"""
+        output = """02"""
         self.assertIO(input, output)
 
 

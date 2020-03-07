@@ -6,9 +6,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    s = input()
-    m = input()
-    print(s if len(s) > len(m) else m)
+    l = list(map(int, input().split()))
+    l = sorted(l)
+    print(l[0] if not l[0] == l[1] else l[2])
 
 
 class TestClass(unittest.TestCase):
@@ -23,16 +23,20 @@ class TestClass(unittest.TestCase):
 
     def test_input1(self):
         print("test_input1")
-        input = """isuruu
-isleapyear"""
-        output = """isleapyear"""
+        input = """1 1 2"""
+        output = """2"""
         self.assertIO(input, output)
 
     def test_input2(self):
         print("test_input2")
-        input = """ttttiiiimmmmeeee
-time"""
-        output = """ttttiiiimmmmeeee"""
+        input = """4 3 4"""
+        output = """3"""
+        self.assertIO(input, output)
+
+    def test_input3(self):
+        print("test_input3")
+        input = """5 5 5"""
+        output = """5"""
         self.assertIO(input, output)
 
 

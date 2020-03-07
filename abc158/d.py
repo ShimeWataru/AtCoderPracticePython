@@ -8,23 +8,29 @@ logging.basicConfig(level=logging.DEBUG)
 def resolve():
     s = input()
     n = int(input())
-    l = s.count("L")
-    r = s.count("R")
-    u = s.count("U")
-    d = s.count("D")
-    c = s.count("?")
-    a = abs(l - r)
-    b = abs(u - d)
-    if n == 1:
-        print(a + b + c)
-    else:
-        if 0 > a + b - c:
-            if (a + b - c) % 2 == 0:
-                print(0)
-            else:
-                print(1)
+    l = [list(input().split()) for i in range(n)]
+    start = []
+    end = []
+    d = True
+    for i in range(n):
+        if l[i][0] == "1":
+            d = not (d)
         else:
-            print(a+b-c)
+            if l[i][1] == "1":
+                if d:
+                    start.append(l[i][2])
+                else:
+                    end.append(l[i][2])
+            else:
+                if d:
+                    end.append(l[i][2])
+                else:
+                    start.append(l[i][2])
+    if d:
+        print("".join(start[::-1]) + s + "".join(end))
+    else:
+        print("".join(end[::-1]) +
+              ''.join(list(reversed(s))) + "".join(start))
 
 
 class TestClass(unittest.TestCase):
@@ -39,30 +45,34 @@ class TestClass(unittest.TestCase):
 
     def test_input_1(self):
         print("test_input_1")
-        input = """UL?
+        input = """a
+4
+2 1 p
+1
+2 2 c
 1"""
-        output = """3"""
+        output = """cpa"""
         self.assertIO(input, output)
 
     def test_input_2(self):
         print("test_input_2")
-        input = """UD?
+        input = """a
+6
+2 2 a
+2 1 b
+1
+2 2 c
+1
 1"""
-        output = """1"""
+        output = """aabc"""
         self.assertIO(input, output)
 
     def test_input_3(self):
         print("test_input_3")
-        input = """UUUU?DDR?LLLL
-1"""
-        output = """7"""
-        self.assertIO(input, output)
-
-    def test_input_4(self):
-        print("test_input_4")
-        input = """UULL?
-2"""
-        output = """3"""
+        input = """y
+1
+2 1 x"""
+        output = """xy"""
         self.assertIO(input, output)
 
 

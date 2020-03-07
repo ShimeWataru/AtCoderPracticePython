@@ -724,6 +724,16 @@ setup.swapcase()
 ```python
 setup.replace('duck', 'marmoset')
 duckがmarmosetに入れ替わる
+setup.replace('duck', '')
+変換先を''にすると削除
+```
+
+### j 文字列から特定の文字を取り除く
+
+```python
+text = "ababHello Worldabca"
+text.strip("a""b""c")
+'Hello World'
 ```
 
 ## 08 リスト（list）
