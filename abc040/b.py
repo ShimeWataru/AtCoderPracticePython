@@ -7,15 +7,17 @@ logging.basicConfig(level=logging.DEBUG)
 
 def resolve():
     n = int(input())
-    a = int((n ** (1 / 2))//1)
-    b = 1
-    print(a, b)
-    for i in reversed(range(1, a)):
-        if n % i == 0:
-            a = i
-            b = n // i
-
-    print(abs(a-b) + (n - a*b))
+    ans = 1000000000
+    a = 1
+    b = n - a
+    while (a <= n):
+        tmp_ans = 0
+        b = n // a
+        tmp_ans += n - (a * b)
+        tmp_ans += abs(a - b)
+        ans = min(ans, tmp_ans)
+        a += 1
+    print(ans)
 
 
 class TestClass(unittest.TestCase):
