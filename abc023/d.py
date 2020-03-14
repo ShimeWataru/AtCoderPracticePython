@@ -6,14 +6,11 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
-    s = input()
-    ans = 0
-    old = s[0]
-    for i in range(1, len(s)):
-        if old != s[i]:
-            ans += 1
-        old = s[i]
-    print(ans)
+    n = int(input())
+    b = []
+    for i in range(n):
+        h, s = map(int, input().split())
+        b.append((h, s))
 
 
 class TestClass(unittest.TestCase):
@@ -26,22 +23,26 @@ class TestClass(unittest.TestCase):
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
 
-    def test_input_1(self):
-        print("test_input_1")
-        input = """BBBWW"""
-        output = """1"""
+    def test_input1(self):
+        print("test_input1")
+        input = """4
+5 6
+12 4
+14 7
+21 2"""
+        output = """23"""
         self.assertIO(input, output)
 
-    def test_input_2(self):
-        print("test_input_2")
-        input = """WWWWWW"""
-        output = """0"""
-        self.assertIO(input, output)
-
-    def test_input_3(self):
-        print("test_input_3")
-        input = """WBWBWBWBWB"""
-        output = """9"""
+    def test_input2(self):
+        print("test_input2")
+        input = """6
+100 1
+100 1
+100 1
+100 1
+100 1
+1 30"""
+        output = """105"""
         self.assertIO(input, output)
 
 

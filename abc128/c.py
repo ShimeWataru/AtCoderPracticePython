@@ -6,23 +6,39 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def resolve():
+    # n, m = map(int, input().split())
+    # l = [list(map(int, input().split())) for _ in range(m)]
+    # p = list(map(int, input().split()))
+    # count = 0
+    # for i in range(2 ** n):
+    #     check = True
+    #     bin_str = format(i, 'b').rjust(n + 1, "0")
+    #     for j in range(m):
+    #         light = 0
+    #         for k in range(1, len(l[j])):
+    #             if bin_str[l[j][k]] == "1":
+    #                 light += 1
+    #         if not (light % 2 == p[j]):
+    #             check = False
+    #     if check:
+    #         count += 1
+    # print(count)
     n, m = map(int, input().split())
-    l = [list(map(int, input().split())) for _ in range(m)]
+    l = [list(map(int, input().split())) for i in range(m)]
     p = list(map(int, input().split()))
-    count = 0
+    ans = 0
     for i in range(2 ** n):
         check = True
-        bin_str = format(i, 'b').rjust(n + 1, "0")
         for j in range(m):
             light = 0
             for k in range(1, len(l[j])):
-                if bin_str[l[j][k]] == "1":
+                if ((i >> l[j][k] - 1) & 1):
                     light += 1
-            if not (light % 2 == p[j]):
+            if light % 2 != p[j]:
                 check = False
         if check:
-            count += 1
-    print(count)
+            ans += 1
+    print(ans)
 
 
 class TestClass(unittest.TestCase):

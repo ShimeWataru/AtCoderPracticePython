@@ -934,10 +934,11 @@ a = ['a','b','c','d']
 'd' in a == True
 ```
 
-### 多重リスト
+### 多重リスト初期化
 
 ```python
-l = [[0] * n for i in range(m)]
+l = [[0] * n for i in range(m)] # n列m行のリスト
+[[] for i in range(row)] # [[],[],[],…row個]
 ```
 
 ## 基本処理
@@ -1423,6 +1424,15 @@ math.factorial(4) // math.factorial(4 - 2)
 
 # 10C3
 math.factorial(10) // math.factorial(10 - 3) // math.factorial(3)
+```
+
+### リストから順列を生成
+
+```python
+import itertools
+l = ['a', 'b', 'c', 'd']
+p = list(itertools.permutations(l, 2)) # タプルなので注意
+# [('a', 'b'), ('a', 'c'), ('a', 'd'), ('b', 'a'), ('b', 'c'), ('b', 'd'), ('c', 'a'), ('c', 'b'), ('c', 'd'), ('d', 'a'), ('d', 'b'), ('d', 'c')]
 ```
 
 ## その他
