@@ -864,6 +864,19 @@ print(List.count('d'))
 0
 ```
 
+#### 速い count
+
+```python
+def count_defaultdict(it):
+    counter = collections.defaultdict(int)
+    for x in it:
+        counter[x] += 1
+    return dict(counter)
+
+l = list(map(int, input().split()))
+count = count_defaultdict(l)
+```
+
 ### e 要素のユニーク化 重複削除
 
 要素のユニーク化はリスト`list`型から集合`set`型に変換することによって要素をユニークにできる。ただし、要素の順序性は保たれない。
