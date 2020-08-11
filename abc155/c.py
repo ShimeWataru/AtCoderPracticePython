@@ -14,13 +14,17 @@ def resolve():
             a[s] += 1
         else:
             a[s] = 1
-    max_a = max(a)
     a = sorted(a.items(), key=lambda x: x[1], reverse=True)
-    print(a)
-    print(max_a)
-    # for k in a:
-    #     if a[k] == max_a:
-    #         print(k)
+    max_a = a[0][1]
+    w = []
+    for i in range(len(a)):
+        if a[i][1] == max_a:
+            w.append(a[i][0])
+        else:
+            break
+    w = sorted(w)
+    for i in range(len(w)):
+        print(w[i])
 
 
 class TestClass(unittest.TestCase):
