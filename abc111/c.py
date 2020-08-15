@@ -22,27 +22,29 @@ def resolve():
         else:
             b[key_b] = 1
 
-    sorted(a.items(), key=lambda x: x[1], reverse=True)
-    sorted(b.items(), key=lambda x: x[1], reverse=True)
-
-    a = list(a.items())
-    b = list(b.items())
-    ca_max = a[0]
-    cb_max = b[0]
+    a = sorted(a.items(), key=lambda x: x[1], reverse=True)
+    b = sorted(b.items(), key=lambda x: x[1], reverse=True)
+    # a = list(a.items())
+    # b = list(b.items())
+    # print(a)
+    # print(b)
+    ca_max = a[0][0]
+    cb_max = b[0][0]
     ca_max_num = a[0][1]
     cb_max_num = b[0][1]
-    if ca_max[0] == cb_max[0]:
-        if ca_max[1] > cb_max[1]:
-            if len(b) > 1:
-                cb_max_num = b[1][1]
-            else:
-                cb_max_num = 0
+    same_num = ca_max_num + cb_max_num
+
+    if ca_max == cb_max:
+        if len(a) > 1:
+            next_ca_max = a[1][1]
         else:
-            if len(a) > 1:
-                ca_max_num = a[1][1]
-            else:
-                ca_max_num = 0
-    print((n // 2) * 2 - ca_max_num - cb_max_num)
+            next_ca_max = 0
+        if len(b) > 1:
+            next_cb_max = b[1][1]
+        else:
+            next_cb_max = 0
+        same_num = max(ca_max_num + next_cb_max, cb_max_num + next_ca_max)
+    print(n - same_num)
 
 
 class TestClass(unittest.TestCase):
