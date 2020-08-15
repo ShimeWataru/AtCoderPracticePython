@@ -7,9 +7,18 @@ logging.basicConfig(level=logging.DEBUG)
 
 def resolve():
     n = int(input())
-    l = [int(input()) for _ in range(n)]
-    ans = [x for x in set(l) if l.count(x) % 2 == 1]
-    print(len(ans))
+    l = {}
+    ans = 0
+    for _ in range(n):
+        a = int(input())
+        if a in l:
+            l[a] += 1
+        else:
+            l[a] = 1
+    for v in l.values():
+        if v % 2 == 1:
+            ans += 1
+    print(ans)
 
 
 class TestClass(unittest.TestCase):
