@@ -8,7 +8,7 @@ from argparse import ArgumentParser
 def get_option():
     argparser = ArgumentParser()
     argparser.add_argument(
-        "-c", "--convention", type=str, default="", help="Convention Name"
+        "convention", type=str, default="", help="Convention Name"
     )
     argparser.add_argument(
         "-i", "--initial", type=str, default="a", help="First problem alphabet"
@@ -18,9 +18,6 @@ def get_option():
     )
     argparser.add_argument(
         "-t", "--type", type=str, default="", help="Question format number or alphabet"
-    )
-    argparser.add_argument(
-        "-u", "--url", type=str, default="", help="URL to get the problem"
     )
     return argparser.parse_args()
 
