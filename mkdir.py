@@ -7,9 +7,7 @@ from argparse import ArgumentParser
 
 def get_option():
     argparser = ArgumentParser()
-    argparser.add_argument(
-        "convention", type=str, default="", help="Convention Name"
-    )
+    argparser.add_argument("convention", type=str, default="", help="Convention Name")
     argparser.add_argument(
         "-i", "--initial", type=str, default="a", help="First problem alphabet"
     )
@@ -18,6 +16,13 @@ def get_option():
     )
     argparser.add_argument(
         "-t", "--type", type=str, default="", help="Question format number or alphabet"
+    )
+    argparser.add_argument(
+        "-u",
+        "--url",
+        type=str,
+        default="",
+        help="If the format of the URL is different from the usual",
     )
     return argparser.parse_args()
 
@@ -36,12 +41,23 @@ def main(args):
         directory = "{convention}/{question}".format(
             convention=args.convention, question=questions_range[i]
         )
-        url = "https://atcoder.jp/contests/{convention}/tasks/{convention}_{question}".format(
-            convention=args.convention, question=url_suffix[i]
+        url = (
+            (args.url + url_suffix[i])
+            if args.url
+            else "https://atcoder.jp/contests/{convention}/tasks/{convention}_{question}".format(
+                convention=args.convention, question=url_suffix[i]
+            )
         )
         subprocess.run("mkdir -p ./{dir}/test".format(dir=directory), shell=True)
-        subprocess.run("touch ./{dir}/{question}.py".format(dir=directory, question=questions_range[i]), shell=True)
-        subprocess.run("oj d -d {dir}/test {url}".format(dir=directory, url=url), shell=True)
+        subprocess.run(
+            "touch ./{dir}/{question}.py".format(
+                dir=directory, question=questions_range[i]
+            ),
+            shell=True,
+        )
+        subprocess.run(
+            "oj d -d {dir}/test {url}".format(dir=directory, url=url), shell=True
+        )
 
 
 if __name__ == "__main__":
